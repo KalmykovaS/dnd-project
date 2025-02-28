@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
+* {
+    box-sizing: border-box;
+}
+
+::before,
+::after {
+    box-sizing: inherit;
+}
+
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
@@ -17,11 +26,7 @@
 
 a {
     font-weight: 500;
-    color: #646cff;
     text-decoration: inherit;
-}
-a:hover {
-    color: #535bf2;
 }
 
 body {
@@ -32,24 +37,24 @@ body {
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 2.3em;
     line-height: 1.1;
+    font-family: 'Roboto Medium', Arial, sans-serif;
 }
 
 button {
+    outline: none;
+    border: none;
     border-radius: 8px;
-    border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 1em;
     font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
+    font-family: 'Roboto Medium', Arial, sans-serif;
+    color: var(--color-gray-900);
     cursor: pointer;
-    transition: border-color 0.25s;
+    transition: all 0.3s ease-in-out;
 }
-button:hover {
-    border-color: #646cff;
-}
+
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
@@ -65,8 +70,18 @@ button:focus-visible {
 }
 
 .container {
-    margin: 0 auto;
+    margin: 0 auto 120px;
     padding: 0 15em;
+
+    @media (max-width: 1023px) {
+        padding: 0 2em;
+        margin-bottom: 40px;
+    }
+}
+
+.content {
+    padding: 0 4em;
+    text-align: justify;
 }
 
 @media (prefers-color-scheme: light) {
@@ -80,4 +95,36 @@ button:focus-visible {
     button {
         background-color: #f9f9f9;
     }
+}
+
+.custom-text-semibold {
+    font-family: 'Roboto Medium', Arial, sans-serif;
+}
+
+.custom-text-bold {
+    font-family: 'Roboto Medium', Arial, sans-serif;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../public/fonts/Roboto-Regular.woff2') format('woff2'),
+        url('../../public/fonts/Roboto-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url('../../public/fonts/Roboto-Medium.woff2') format('woff2'),
+    url('../../public/fonts/Roboto-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('../../public/fonts/Roboto-Bold.woff2') format('woff2'),
+    url('../../public/fonts/Roboto-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
