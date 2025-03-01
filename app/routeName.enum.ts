@@ -5,6 +5,6 @@ export enum ERouteName {
     Background = "Background",
     Worldview = "Worldview",
     Character = "Character",
-    Result = "Result",
+    Characteristics = "Characteristics",
     Error = "Error",
 }

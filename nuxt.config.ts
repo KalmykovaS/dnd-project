@@ -24,5 +24,6 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  // подумать как работать с localStorage c ssr true
   ssr: false,
 })

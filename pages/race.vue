@@ -14,30 +14,11 @@
       <Loader />
     </div>
     <template v-else>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        <li
-            v-for="race in data"
-            :key="race.id"
-            class="relative block bg-gray-800 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700 transition-all duration-300 border-2 border-transparent"
-            :class="{ '!border-cyan-500 !bg-gray-700': raceState === race.codeName }"
-        >
-          <label class="flex flex-col gap-2 cursor-pointer p-4">
-            <img
-                :src="race.image"
-                :alt="race.name"
-                class="w-48 h-48 object-cover rounded-full mb-4 mx-auto"
-            />
-            <input
-                type="radio"
-                :value="race.codeName"
-                v-model="raceState"
-                class="hidden"
-            />
-            <span class="text-lg text-center custom-text-semibold">{{ race.name }}</span>
-            <span class="text-sm text-gray-300 mt-2">{{ race.description }}</span>
-          </label>
-        </li>
-      </ul>
+      <RadioList
+          :items="data || []"
+          :modal-value="raceState"
+          @update:modelValue="raceState = $event"
+      />
       <ForwardAndBackButtons
         :prev-step="ERouteName.Main"
         :disabled="!raceState"
@@ -51,14 +32,15 @@
 import Loader from '~/components/Loader.vue';
 import { useStateStore } from '~/stores/state';
 import { storeToRefs } from 'pinia';
+import RadioList from '~/components/common/RadioList.vue';
 import ForwardAndBackButtons from '~/components/common/ForwardAndBackButtons.vue';
 import { ERouteName } from "~/app/routeName.enum";
-import { Races } from "~/types/common";
+import type { ItemsList } from "~/types/common";
 
 const config = useRuntimeConfig();
 const baseUrl = config.public.apiBase;
 
-const { data, pending } = await useAsyncData(() => $fetch<Races[]>(`${baseUrl}/races`));
+const { data, pending } = await useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/races`));
 
 const stateStore = useStateStore();
 const { raceState } = storeToRefs(stateStore);

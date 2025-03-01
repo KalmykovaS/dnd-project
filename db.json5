@@ -50,6 +50,56 @@
         description: 'Сколько вы помните, в вашей жизни всегда была война. С молодости вы проходили тренировки, учились использовать оружие и доспехи, изучали технику выживания, включая то, как оставаться живым на поле боя. Вы могли быть частью армии страны или отряда наёмников, а может, были местным ополченцем во время войны.',
         image: '/image/backgrounds/soldier.jpg',
       },
+      characteristics: {
+        title: 'Сила – основная, Телосложение для ХП, Харизма для ролевого потенциала.',
+        masteryBonus: 2,
+        common: {
+          strength: 15,
+          dexterity: 12,
+          constitution: 14,
+          intelligence: 10,
+          wisdom: 8,
+          charisma: 13,
+        },
+        savingThrows: {
+          strength: true,
+          constitution: true,
+        },
+        personalSkills: [
+          {
+            name: 'Внимательность',
+            codeName: 'perception',
+            modifier: 'wisdom',
+          },
+          {
+            name: 'Выживание',
+            codeName: 'survival',
+            modifier: 'wisdom',
+          },
+          {
+            name: 'Атлетика',
+            codeName: 'athletics',
+            modifier: 'strength',
+          },
+          {
+            name: 'Запугивание',
+            codeName: 'intimidation',
+            modifier: 'charisma',
+          }
+        ],
+        armorClass: {
+          name: 'тяжелый доспех (кольчуга)',
+          value: 16,
+        },
+        speed: '30 футов',
+        hitPoints: 12,
+        initiative: 1,
+        weapon: {
+          name: 'Длинный меч',
+          attack: 'модификатор силы (+2) + бонус мастерства (+2)',
+          damage: '1к8 рубящий урон + модификатор силы (+2)'
+        }
+      }
     },
     {
       id: 2,
@@ -63,6 +113,56 @@
         codeName: 'sage',
         description: 'Вы провели много лет, постигая тайны мультивселенной. Вы читали рукописи, изучали свитки, и общались с величайшими экспертами в интересующих вас темах. Всё это сделало вас знатоком в своей области.',
         image: '/image/backgrounds/sage.jpg',
+      },
+      characteristics: {
+        title: 'Интеллект – основа заклинаний, Телосложение для концентрации.',
+        masteryBonus: 2,
+        common: {
+          strength: 8,
+          dexterity: 12,
+          constitution: 14,
+          intelligence: 15,
+          wisdom: 13,
+          charisma: 10,
+        },
+        savingThrows: {
+          intelligence: true,
+          wisdom: true,
+        },
+        personalSkills: [
+          {
+            name: 'Медицина',
+            codeName: 'medicine',
+            modifier: 'wisdom',
+          },
+          {
+            name: 'Проницательность',
+            codeName: 'insight',
+            modifier: 'wisdom',
+          },
+          {
+            name: 'История',
+            codeName: 'history',
+            modifier: 'intelligence',
+          },
+          {
+            name: 'Магия',
+            codeName: 'arcana',
+            modifier: 'intelligence',
+          }
+        ],
+        armorClass: {
+          name: 'без доспеха',
+          value: 11,
+        },
+        speed: '30 футов',
+        hitPoints: 10,
+        initiative: 1,
+        weapon: {
+          name: 'Боевой посох',
+          attack: 'модификатор силы (-1)',
+          damage: '1к6 дробящий урон + модификатор силы (-1)'
+        }
       }
     },
     {
@@ -77,6 +177,56 @@
         codeName: 'urchin',
         description: 'Вы выросли на улице в бедности и одиночестве, лишённые родителей. Никто не присматривал и не заботился о вас, и вам пришлось научиться делать это самому. Вам приходилось постоянно бороться за еду и следить за другими неприкаянными душами, способными обокрасть вас. Вы спали на чердаках и в переулках, мокли под дождём и боролись с болезнями, не получая медицинской помощи или приюта. Вы выжили, невзирая на все трудности, и сделали это благодаря своей сноровке, силе или скорости.',
         image: '/image/backgrounds/urchin.jpg',
+      },
+      characteristics: {
+        title: 'Ловкость – главная для атак, Интеллект полезен для умений.',
+        masteryBonus: 2,
+        common: {
+          strength: 10,
+          dexterity: 15,
+          constitution: 13,
+          intelligence: 14,
+          wisdom: 12,
+          charisma: 8,
+        },
+        savingThrows: {
+          dexterity: true,
+          intelligence: true,
+        },
+        personalSkills: [
+          {
+            name: 'Акробатика',
+            codeName: 'acrobatics',
+            modifier: 'dexterity',
+          },
+          {
+            name: 'Обман',
+            codeName: 'deception',
+            modifier: 'charisma',
+          },
+          {
+            name: 'Ловкость рук',
+            codeName: 'sleight_of_hand',
+            modifier: 'dexterity',
+          },
+          {
+            name: 'Скрытность',
+            codeName: 'stealth',
+            modifier: 'dexterity',
+          }
+        ],
+        armorClass: {
+          name: 'легкий доспех (кожаный)',
+          value: 13,
+        },
+        initiative: 2,
+        speed: '30 футов',
+        hitPoints: 9,
+        weapon: {
+          name: 'Арбалет, лёгкий',
+          attack: 'модификатор ловкости (+2) + бонус мастерства (+2)',
+          damage: '1к8 колющий урон + модификатор ловкости (+2)'
+        }
       }
     },
     {
@@ -91,6 +241,56 @@
         codeName: 'entertainer',
         description: 'Вам нравится выступать на публике. Вы знаете, как их развлечь, очаровать и даже воодушевить. Ваша поэзия может трогать сердца слушателей, пробуждать в них горе или радость, смех или гнев. Ваша музыка ободряет их или заставляет скорбеть. Ваши танцы захватывают, а шутки всегда смешны. Чем бы вы ни занимались, ваша жизнь тесно связана с искусство.',
         image: '/image/backgrounds/urchin.jpg',
+      },
+      characteristics: {
+        title: 'Харизма – основа магии и социальных взаимодействий, Ловкость для брони.',
+        masteryBonus: 2,
+        common: {
+          strength: 10,
+          dexterity: 14,
+          constitution: 13,
+          intelligence: 12,
+          wisdom: 8,
+          charisma: 15,
+        },
+        savingThrows: {
+          dexterity: true,
+          charisma: true,
+        },
+        personalSkills: [
+          {
+            name: 'Убеждение',
+            codeName: 'persuasion',
+            modifier: 'charisma',
+          },
+          {
+            name: 'Обман',
+            codeName: 'deception',
+            modifier: 'charisma',
+          },
+          {
+            name: 'Акробатика',
+            codeName: 'acrobatics',
+            modifier: 'dexterity',
+          },
+          {
+            name: 'Выступление',
+            codeName: 'performance',
+            modifier: 'charisma',
+          }
+        ],
+        armorClass: {
+          name: 'легкий доспех (кожаный)',
+          value: 13,
+        },
+        speed: '30 футов',
+        hitPoints: 9,
+        initiative: 2,
+        weapon: {
+          name: 'Рапира',
+          attack: 'модификатор ловкости (+2) + бонус мастерства (+2)',
+          damage: '1к8 колющий урон + модификатор ловкости (+2)'
+        }
       }
     },
     {
@@ -105,6 +305,56 @@
         codeName: 'folk-hero',
         description: 'У вас было низкое социальное положение, но судьбой было уготовано большее. Жители вашей родной деревни уже считают вас своим героем, но вам предначертано сражаться с тиранами и чудовищами, угрожающими другим.',
         image: '/image/backgrounds/folk-hero.jpg',
+      },
+      characteristics: {
+        title: 'Сила – основа, Харизма важна для аур и магии.',
+        masteryBonus: 2,
+        common: {
+          strength: 15,
+          dexterity: 10,
+          constitution: 14,
+          intelligence: 8,
+          wisdom: 12,
+          charisma: 13,
+        },
+        savingThrows: {
+          wisdom: true,
+          charisma: true,
+        },
+        personalSkills: [
+          {
+            name: 'Запугивание',
+            codeName: 'intimidation',
+            modifier: 'charisma',
+          },
+          {
+            name: 'Атлетика',
+            codeName: 'athletics',
+            modifier: 'strength',
+          },
+          {
+            name: 'Выживание',
+            codeName: 'survival',
+            modifier: 'wisdom',
+          },
+          {
+            name: 'Уход за животными',
+            codeName: 'animal_handling',
+            modifier: 'wisdom',
+          }
+        ],
+        armorClass: {
+          name: 'тяжелый доспех (кольчуга) + щит',
+          value: 18,
+        },
+        speed: '30 футов',
+        hitPoints: 12,
+        initiative: 0,
+        weapon: {
+          name: 'Двуручный меч',
+          attack: 'модификатор силы (+2) + бонус мастерства (+2)',
+          damage: '2к6 рубящий урон + модификатор силы (+2)'
+        }
       }
     },
     {
@@ -119,43 +369,185 @@
         codeName: 'hermit',
         description: 'Вы значительную часть своей жизни прожили в уединении — либо в закрытой общине, такой как монастырь, либо вообще в одиночестве. Вдали от шумного общества вы нашли тишину, спокойствие, а возможно, и ответы на важные вопросы.',
         image: '/image/backgrounds/hermit.jpg'
+      },
+      characteristics: {
+        title: 'Мудрость – основа магии, Телосложение для модицикации телесной формы.',
+        masteryBonus: 2,
+        common: {
+          strength: 10,
+          dexterity: 12,
+          constitution: 15,
+          intelligence: 8,
+          wisdom: 14,
+          charisma: 13,
+        },
+        savingThrows: {
+          intelligence: true,
+          wisdom: true,
+        },
+        personalSkills: [
+          {
+            name: 'Внимательность',
+            codeName: 'perception',
+            modifier: 'wisdom',
+          },
+          {
+            name: 'Природа',
+            codeName: 'nature',
+            modifier: 'intelligence',
+          },
+          {
+            name: 'Медицина',
+            codeName: 'medicine',
+            modifier: 'wisdom',
+          },
+          {
+            name: 'Религия',
+            codeName: 'religion',
+            modifier: 'intelligence',
+          }
+        ],
+        armorClass: {
+          name: 'легкий доспех (кожаный)',
+          value: 12,
+        },
+        speed: '30 футов',
+        hitPoints: 10,
+        initiative: 1,
+        weapon: {
+          name: 'Боевой посох',
+          attack: 'модификатор силы (0)',
+          damage: '1к6 дробящий урон + модификатор силы (0)'
+        }
       }
     }
+  ],
+  skills: [
+    {
+      name: 'Акробатика',
+      codeName: 'acrobatics',
+      modifier: 'dexterity',
+    },
+    {
+      name: 'Анализ',
+      codeName: 'investigation',
+      modifier: 'intelligence',
+    },
+    {
+      name: 'Атлетика',
+      codeName: 'athletics',
+      modifier: 'strength',
+    },
+    {
+      name: 'Внимательность',
+      codeName: 'perception',
+      modifier: 'wisdom',
+    },
+    {
+      name: 'Выживание',
+      codeName: 'survival',
+      modifier: 'wisdom',
+    },
+    {
+      name: 'Выступление',
+      codeName: 'performance',
+      modifier: 'charisma',
+    },
+    {
+      name: 'Запугивание',
+      codeName: 'intimidation',
+      modifier: 'charisma',
+    },
+    {
+      name: 'История',
+      codeName: 'history',
+      modifier: 'intelligence',
+    },
+    {
+      name: 'Ловкость рук',
+      codeName: 'sleight_of_hand',
+      modifier: 'dexterity',
+    },
+    {
+      name: 'Магия',
+      codeName: 'arcana',
+      modifier: 'intelligence',
+    },
+    {
+      name: 'Медицина',
+      codeName: 'medicine',
+      modifier: 'wisdom',
+    },
+    {
+      name: 'Обман',
+      codeName: 'deception',
+      modifier: 'charisma',
+    },
+    {
+      name: 'Природа',
+      codeName: 'nature',
+      modifier: 'intelligence',
+    },
+    {
+      name: 'Проницательность',
+      codeName: 'insight',
+      modifier: 'wisdom',
+    },
+    {
+      name: 'Религия',
+      codeName: 'religion',
+      modifier: 'intelligence',
+    },
+    {
+      name: 'Скрытность',
+      codeName: 'stealth',
+      modifier: 'dexterity',
+    },
+    {
+      name: 'Убеждение',
+      codeName: 'persuasion',
+      modifier: 'charisma',
+    },
+    {
+      name: 'Уход за животными',
+      codeName: 'animal_handling',
+      modifier: 'wisdom',
+    },
   ],
   worldview: [
     {
       id: 1,
-      title: 'Законно-доброе (Lawful Good)',
+      name: 'Законно-доброе (Lawful Good)',
       codeName: 'lawful-good',
       description: 'Персонажи с этим мировоззрением верят в порядок и справедливость. Они склонны следовать законам и уважать авторитет, при этом всегда действуют с целью помогать другим. Эти персонажи будут стремиться защищать слабых и бороться с злом, соблюдая моральные принципы. Они верят в то, что добро и порядок способны сделать мир лучше.',
     },
     {
       id: 2,
-      title: 'Хаотично-доброе (Chaotic Good)',
+      name: 'Хаотично-доброе (Chaotic Good)',
       codeName: 'chaotic-good',
       description: 'Хаотично-добрые персонажи противятся любым формам контроля, будь то законы, правительства или авторитарные системы. Их мораль заключается в том, чтобы действовать по собственной совести и помогать другим, но они часто нарушают законы и традиции, если это необходимо для достижения справедливости. Их цель — свобода и помощь другим.',
     },
     {
       id: 3,
-      title: 'Нейтральное (True Neutral)',
+      name: 'Нейтральное (True Neutral)',
       codeName: 'true-neutral',
       description: 'Персонажи с нейтральным мировоззрением стараются сохранять баланс между добром и злом, законом и хаосом. Они могут избегать принятия стороны в споре, действуя с точки зрения объективности и равновесия. Для таких персонажей важно не вмешиваться в природный ход событий, а следовать своему внутреннему миропониманию.',
     },
     {
       id: 4,
-      title: 'Хаотично-нейтральное (Chaotic Neutral)',
+      name: 'Хаотично-нейтральное (Chaotic Neutral)',
       codeName: 'chaotic-neutral',
       description: 'Хаотично-нейтральные персонажи ценят свободу и независимость выше всего. Они действуют по своему усмотрению, часто в интересах своих собственных желаний, и не обращают внимания на то, что происходящее вокруг может нарушить стабильность. Они не стремятся делать мир лучше или хуже, их целью является сохранение свободы воли и личного выбора.',
     },
     {
       id: 5,
-      title: 'Законно-злое (Lawful Evil)',
+      name: 'Законно-злое (Lawful Evil)',
       codeName: 'lawful-evil',
       description: 'Законно-злые персонажи жестко следуют законам, но их целью является достижение личной власти или контроль над другими. Они не колеблются, если нужно использовать наказания и манипуляции для подчинения других своей воле. Они могут быть эффективными и стратегическими, но их действия часто приводят к угнетению и злу.',
     },
     {
       id: 6,
-      title: 'Хаотично-злое (Chaotic Evil)',
+      name: 'Хаотично-злое (Chaotic Evil)',
       codeName: 'chaotic-evil',
       description: 'Хаотично-злые персонажи отвергают любые ограничения, включая законы и мораль. Они действуют ради разрушения, уничтожения и хаоса, и не считают нужным подчиняться никаким правилам. Их поведение жестоко и эгоистично, и они не испытывают сожалений о своих действиях, даже если это вредит другим.',
     }

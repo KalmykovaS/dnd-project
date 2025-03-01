@@ -11,31 +11,11 @@
       <Loader />
     </div>
     <template v-else>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        <li
-            v-for="itemClass in data"
-            :key="itemClass.id"
-            class="relative block bg-gray-800 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700 transition-all duration-300 border-2 border-transparent"
-            :class="{ '!border-cyan-500 !bg-gray-700': classState === itemClass.codeName }"
-        >
-          <label class="flex flex-col gap-2 cursor-pointer p-4">
-            <img
-                :src="itemClass.image"
-                :alt="itemClass.name"
-                class="w-48 h-48 object-cover rounded-full mb-4 mx-auto"
-            />
-            <input
-                type="radio"
-                :value="itemClass.codeName"
-                v-model="classState"
-                class="hidden"
-            />
-            <span class="text-lg text-center custom-text-semibold">{{ itemClass.name }}</span>
-            <span class="text-sm text-gray-300 mt-2">Возможные варианты: {{ itemClass.example }}</span>
-            <span class="text-sm text-gray-300 mt-2">{{ itemClass.description }}</span>
-          </label>
-        </li>
-      </ul>
+      <RadioList
+          :items="data || []"
+          :modal-value="classState"
+          @update:modelValue="classState = $event"
+      />
       <ForwardAndBackButtons
         :prev-step="ERouteName.Race"
         :disabled="!classState"
@@ -50,14 +30,15 @@
 import Loader from '~/components/Loader.vue';
 import { useStateStore } from '~/stores/state';
 import { storeToRefs } from 'pinia';
+import RadioList from "~/components/common/RadioList.vue";
 import ForwardAndBackButtons from '~/components/common/ForwardAndBackButtons.vue';
 import { ERouteName } from "~/app/routeName.enum";
-import { Classes } from "~/types/common";
+import type { ItemsList } from "~/types/common";
 
 const config = useRuntimeConfig();
 const baseUrl = config.public.apiBase;
 
-const { data, pending } = await useAsyncData(() => $fetch<Classes[]>(`${baseUrl}/classes`));
+const { data, pending } = await useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/classes`));
 
 const stateStore = useStateStore();
 const { classState, classStateId } = storeToRefs(stateStore);

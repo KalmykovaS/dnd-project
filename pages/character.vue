@@ -31,7 +31,7 @@
       </div>
       <ForwardAndBackButtons
           :prev-step="ERouteName.Worldview"
-          :next-step="ERouteName.Result"
+          :next-step="ERouteName.Characteristics"
       />
     </div>
   </div>

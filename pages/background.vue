@@ -16,13 +16,13 @@
     <template v-else>
       <div class="flex items-center gap-8 p-6 bg-gray-800 text-white rounded-2xl shadow-lg mt-12">
         <img
-            :src="backgroundData.image"
-            :alt="backgroundData.codeName"
+            :src="backgroundData?.image"
+            :alt="backgroundData?.codeName"
             class="w-80 h-80 object-cover rounded-lg border-4 border-gray-500 shadow-md"
         />
         <div>
-          <h2 class="text-2xl font-semibold custom-text-semibold">{{ backgroundData.name }}</h2>
-          <p class="text-gray-300 mt-2">{{ backgroundData.description }}</p>
+          <h2 class="text-2xl font-semibold custom-text-semibold">{{ backgroundData?.name }}</h2>
+          <p class="text-gray-300 mt-2">{{ backgroundData?.description }}</p>
         </div>
       </div>
       <ForwardAndBackButtons
@@ -37,15 +37,15 @@
 import { ERouteName } from "~/app/routeName.enum.js";
 import Loader from "~/components/Loader.vue";
 import ForwardAndBackButtons from "~/components/common/ForwardAndBackButtons.vue";
-import { Background } from "~/types/common";
+import type { ItemsList } from "~/types/common";
 
 const route = useRoute();
 
 const config = useRuntimeConfig();
 const baseUrl = config.public.apiBase;
 
-const { data, pending } = await useAsyncData(() => $fetch<Background>(`${baseUrl}/classes/${route.params.id}`));
+const { data, pending } = await useAsyncData(() => $fetch<ItemsList>(`${baseUrl}/classes/${route.params.id}`));
 
-const backgroundData = computed(() => data.value.background);
+const backgroundData = computed(() => data.value?.background);
 
 </script>

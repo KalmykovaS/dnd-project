@@ -7,7 +7,7 @@ const ClassPage = () => import("~/pages/class.vue");
 const BackgroundPage = () => import("~/pages/background.vue");
 const WorldviewPage = () => import("~/pages/worldview.vue");
 const CharacterPage = () => import("~/pages/character.vue");
-const ResultPage = () => import("~/pages/result.vue");
+const CharacteristicsPage = () => import("~/pages/characteristics.vue");
 const ErrorPage = () => import("~/pages/error.vue");
 
 export default {
@@ -43,9 +43,9 @@ export default {
             component: CharacterPage,
         },
         {
-            name: ERouteName.Result,
-            path: '/result',
-            component: ResultPage,
+            name: ERouteName.Characteristics,
+            path: '/characteristics',
+            component: CharacteristicsPage,
         },
         {
             name: ERouteName.Error,
