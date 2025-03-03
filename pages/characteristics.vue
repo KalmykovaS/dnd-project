@@ -1,83 +1,168 @@
 <template>
   <div class="container mx-auto text-white min-h-screen">
-    <h1 class="mb-6">Ваш сформированный лист персонажа</h1>
+    <h1 class="mb-6">Лист персонажа</h1>
     <div>
-      <div
-          v-if="personalPending &&
-          pacePending &&
-          skillsPending"
-      >
+      <div v-if="loading">
         <Loader />
       </div>
-      <template v-else>
-        <!-- Основная информация -->
-        <div class="space-y-4">
-          <p class="text-xl font-bold">Имя персонажа: <span class="text-lg">{{ characterPersonalName }}</span></p>
-          <p class="text-xl font-bold">Класс персонажа: <span class="text-lg">{{ personal?.name }}</span></p>
-          <p class="text-xl font-bold">Раса: <span class="text-lg">{{ raceState }}</span></p>
-          <p class="text-xl font-bold">Предыстория: <span class="text-lg">{{ personal?.background?.name }}</span></p>
-          <p class="text-xl font-bold">Мировоззрение: <span class="text-lg">{{ worldviewState }}</span></p>
-        </div>
+      <div v-else>
+        <template v-if="raceState">
+          <div class="space-y-6">
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-3 gap-4">
+              <p>
+                <span class="text-sm opacity-50 custom-text-semibold block">Имя персонажа: </span>
+                <span class="text-lg">{{ characterPersonalName }}</span>
+              </p>
+              <p>
+                <span class="text-sm opacity-50 custom-text-semibold block">Класс персонажа: </span>
+                <span class="text-lg">{{ personal?.name }}</span>
+              </p>
+              <p>
+                <span class="text-sm opacity-50 custom-text-semibold block">Раса: </span>
+                <span class="text-lg">{{ chosenRace?.name }}</span>
+              </p>
+              <p>
+                <span class="text-sm opacity-50 custom-text-semibold block">Предыстория: </span>
+                <span class="text-lg">{{ personal?.background?.name }}</span>
+              </p>
+              <p>
+                <span class="text-sm opacity-50 custom-text-semibold block">Мировоззрение: </span>
+                <span class="text-lg">{{ chosenWorldview?.name }}</span>
+              </p>
+            </div>
 
-        <!-- Дополнительная информация -->
-        <div class="space-y-4">
-          <div>
-            <p class="text-xl">Класс доспеха (КД): {{ personal?.characteristics?.armorClass.name }}</p>
-            <p>{{ personal?.characteristics?.armorClass.value }}</p>
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md space-y-2">
+              <h2 class="text-2xl custom-text-semibold mb-5">Боевые характеристики</h2>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <p>
+                  <span class="text-sm opacity-50 custom-text-semibold block">Класс доспеха (КД): </span>
+                  <span class="text-lg">{{ personal?.characteristics?.armorClass.value }}</span>
+                </p>
+                <p>
+                  <span class="text-sm opacity-50 custom-text-semibold block">Инициатива: </span>
+                  <span class="text-lg">{{ personal?.characteristics?.initiative }}</span>
+                </p>
+                <p>
+                  <span class="text-sm opacity-50 custom-text-semibold block">Максимум хитов (HP): </span>
+                  <span class="text-lg">{{ personal?.characteristics?.hitPoints }}</span>
+                </p>
+                <p>
+                  <span class="text-sm opacity-50 custom-text-semibold block">Скорость: </span>
+                  <span class="text-lg">{{ personal?.characteristics?.speed }}</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-5 text-center">Характеристики</h2>
+                <div class="flex flex-col gap-4">
+                  <div
+                      v-for="(char, index) in characteristicsWithModifiers"
+                      :key="index"
+                      class="flex flex-col gap-2 items-center bg-gradient-to-b from-cyan-900 via-gray-800 to-gray-800 p-4 rounded-xl shadow-md border border-cyan-700">
+
+                    <span class="text-lg custom-text-semibold text-cyan-200">{{ char.name }}</span>
+                    <span class="text-3xl custom-text-bold">{{ char.value }}</span>
+                    <span>
+                    <span class="text-sm opacity-70">Модификатор: </span>
+                    <span class="text-lg text-cyan-200 custom-text-semibold">{{ char.modifier > 0 ? '+' : '' }}{{ char.modifier }}</span>
+                  </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-4">
+                <div class="bg-gradient-to-b from-cyan-900 via-gray-800 to-gray-800 p-4 rounded-xl shadow-md border border-cyan-700">
+                  <span class="text-lg">Бонус мастерства: </span>
+                  <span class="text-2xl text-cyan-200">+{{ personal?.characteristics?.masteryBonus }}</span>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                  <h2 class="text-2xl font-semibold mb-5">Спасброски</h2>
+                  <ul class="space-y-2">
+                    <li
+                        v-for="(savingThrow, index) in savingThrowsWithModifiers"
+                        :key="index"
+                        class="flex justify-between border-b border-gray-600 pb-1">
+                      <span class="text-lg opacity-80">{{ savingThrow.name }}</span>
+                      <span class="text-xl text-cyan-200">{{ savingThrow.modifier > 0 ? '+' : '' }}{{ savingThrow.modifier }}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                  <h2 class="text-2xl font-semibold mb-5">Атаки</h2>
+                  <div class="flex flex-col gap-4 pb-2">
+                    <div>
+                      <p class="text-sm opacity-70 custom-text-semibold">Название:</p>
+                      <p class="text-lg mt-1">{{ personal?.characteristics?.weapon.name }}</p>
+                    </div>
+                    <div>
+                      <p class="text-sm opacity-70 custom-text-semibold">Бонус атаки</p>
+                      <p class="text-lg mt-1">{{ personal?.characteristics?.weapon.attack }}</p>
+                    </div>
+                    <div>
+                      <p class="text-sm opacity-70 custom-text-semibold">Урон</p>
+                      <p class="text-lg mt-1">{{ personal?.characteristics?.weapon.damage }}</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-5">Навыки</h2>
+                <ul class="space-y-2">
+                  <li
+                      v-for="(skill, index) in skillsWithModifiers"
+                      :key="index"
+                      class="flex justify-between border-b border-gray-600 pb-1">
+                    <span class="text-lg opacity-80">{{ skill.name }}</span>
+                    <span class="text-xl text-cyan-200">{{ skill.modifier > 0 ? '+' : '' }}{{ skill.modifier }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+              <h2 class="text-2xl font-semibold mb-5">Личное описание</h2>
+              <div class="flex flex-col gap-4">
+                <p>
+                  <span class="text-sm opacity-50 custom-text-semibold">Краткая история: </span>
+                  <span class="text-lg">{{ characterPersonalHistory }}</span>
+                </p>
+                <p>
+                  <span class="text-sm opacity-50 custom-text-semibold">Внешний вид: </span>
+                  <span class="text-lg">{{ characterPersonalExternalFeatures }}</span>
+                </p>
+                <p>
+                  <span class="text-sm opacity-50 custom-text-semibold">Особенности: </span>
+                  <span class="text-lg">{{ characterPersonalFeatures }}</span>
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="text-xl">Инициатива: {{ personal?.characteristics?.initiative }}</div>
-          <div class="text-xl">Скорость: {{ personal?.characteristics?.speed }}</div>
+
+          <ForwardAndBackButtons :prev-step="ERouteName.Character" />
+        </template>
+        <div
+            v-else
+            class="flex flex-col items-center justify-center bg-gray-900 text-white"
+        >
+          <span class="text-lg mt-15 mb-4">Сначала пройдите опрос</span>
+          <NuxtLink
+              :to="{ name: ERouteName.Main }"
+              class="px-6 py-3 bg-cyan-500 text-gray-900 custom-font-semibold rounded-lg shadow-md hover:bg-cyan-400 hover:shadow-cyan-500/40 transition-all duration-300"
+          >
+            Вернуться на главную
+          </NuxtLink>
         </div>
-
-        <div class="text-xl">Максимум хитов (hit points): {{ personal?.characteristics?.hitPoints }}</div>
-
-        <!-- Характеристики -->
-        <div class="space-y-4">
-          <h2 class="text-2xl font-semibold">Характеристики:</h2>
-          <ul class="space-y-2">
-            <li v-for="char in characteristicsWithModifiers" :key="char.name" class="flex justify-between">
-              <span class="block">{{ char.name }}</span>
-              <span class="block">{{ char.value }}</span>
-              <span class="block">({{ char.modifier > 0 ? '+' : '' }}{{ char.modifier }})</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Бонус мастерства -->
-        <div class="text-xl">
-          <p>+{{ personal?.characteristics?.masteryBonus }} Бонус мастерства</p>
-        </div>
-
-        <!-- Спасброски -->
-        <div class="space-y-4">
-          <h2 class="text-2xl font-semibold">Спасброски:</h2>
-          <ul class="space-y-2">
-            <li v-for="savingThrow in savingThrowsWithModifiers" :key="savingThrow.name" class="flex justify-between">
-              <span class="block">{{ savingThrow.name }}</span>
-              <span class="block">({{ savingThrow.modifier > 0 ? '+' : '' }}{{ savingThrow.modifier }})</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Навыки -->
-        <div class="space-y-4">
-          <h2 class="text-2xl font-semibold">Навыки:</h2>
-          <ul class="space-y-2">
-            <li v-for="skill in skillsWithModifiers" :key="skill.name" class="flex justify-between">
-              <span class="block">{{ skill.name }}</span>
-              <span class="block">({{ skill.modifier > 0 ? '+' : '' }}{{ skill.modifier }})</span>
-            </li>
-          </ul>
-        </div>
-
-        <ForwardAndBackButtons :prev-step="ERouteName.Character" />
-      </template>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {ERouteName} from "~/app/routeName.enum";
+import { ERouteName } from "~/app/routeName.enum";
 import Loader from "~/components/Loader.vue";
 import ForwardAndBackButtons from "~/components/common/ForwardAndBackButtons.vue";
 import { useStateStore } from '~/stores/state';
@@ -100,7 +185,10 @@ const {
   classStateId,
   characterName,
   raceState,
-  worldviewState
+  worldviewState,
+  characterHistory,
+  externalFeatures,
+  features,
 } = storeToRefs(stateStore);
 
 const config = useRuntimeConfig();
@@ -108,15 +196,27 @@ const baseUrl = config.public.apiBase;
 
 const [
   { data: personal, pending: personalPending },
-  { data: pace, pending: pacePending },
+  { data: paces, pending: pacePending },
   { data: skills, pending: skillsPending },
+  { data: worldviews, pending: worldviewsPending },
 ] = await Promise.all([
   useAsyncData(() => $fetch<ItemsList>(`${baseUrl}/classes/${classStateId.value}`)),
   useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/races`)),
-  useAsyncData(() => $fetch<Skill[]>(`${baseUrl}/skills`))
+  useAsyncData(() => $fetch<Skill[]>(`${baseUrl}/skills`)),
+  useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/worldview`))
 ]);
 
+const loading = computed(() => {
+  return personal.value &&
+      pacePending.value &&
+      skillsPending.value &&
+      worldviewsPending.value
+});
+
 const characterPersonalName = computed(() => characterName.value || 'Не выбрано' );
+const characterPersonalHistory = computed(() => characterHistory.value || 'Не выбрано' );
+const characterPersonalExternalFeatures = computed(() => externalFeatures.value || 'Не выбрано' );
+const characterPersonalFeatures = computed(() => features.value || 'Не выбрано' );
 
 const characteristicNames: Record<string, string> = {
   strength: "Сила",
@@ -181,6 +281,14 @@ const skillsWithModifiers = computed(() => {
       modifier,
     };
   });
+});
+
+const chosenRace = computed(() => {
+  return paces?.value?.find((race) => race.codeName === raceState.value);
+});
+
+const chosenWorldview = computed(() => {
+  return worldviews?.value?.find((worldview) => worldview.codeName === worldviewState.value);
 });
 
 </script>

@@ -14,14 +14,14 @@
       <Loader />
     </div>
     <template v-else>
-      <div class="flex items-center gap-8 p-6 bg-gray-800 text-white rounded-2xl shadow-lg mt-12">
+      <div class="flex items-center flex-wrap md:flex-nowrap gap-8 p-6 bg-gray-800 text-white rounded-2xl shadow-lg mt-12">
         <img
             :src="backgroundData?.image"
             :alt="backgroundData?.codeName"
             class="w-80 h-80 object-cover rounded-lg border-4 border-gray-500 shadow-md"
         />
         <div>
-          <h2 class="text-2xl font-semibold custom-text-semibold">{{ backgroundData?.name }}</h2>
+          <h2 class="text-2xl custom-text-semibold">{{ backgroundData?.name }}</h2>
           <p class="text-gray-300 mt-2">{{ backgroundData?.description }}</p>
         </div>
       </div>

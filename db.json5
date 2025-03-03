@@ -67,22 +67,22 @@
         },
         personalSkills: [
           {
-            name: 'Внимательность',
+            name: 'Внимательность (Мудрость)',
             codeName: 'perception',
             modifier: 'wisdom',
           },
           {
-            name: 'Выживание',
+            name: 'Выживание (Мудрость)',
             codeName: 'survival',
             modifier: 'wisdom',
           },
           {
-            name: 'Атлетика',
+            name: 'Атлетика (Сила)',
             codeName: 'athletics',
             modifier: 'strength',
           },
           {
-            name: 'Запугивание',
+            name: 'Запугивание (Харизма)',
             codeName: 'intimidation',
             modifier: 'charisma',
           }
@@ -131,22 +131,22 @@
         },
         personalSkills: [
           {
-            name: 'Медицина',
+            name: 'Медицина (Мудрость)',
             codeName: 'medicine',
             modifier: 'wisdom',
           },
           {
-            name: 'Проницательность',
+            name: 'Проницательность (Мудрость)',
             codeName: 'insight',
             modifier: 'wisdom',
           },
           {
-            name: 'История',
+            name: 'История (Интеллект)',
             codeName: 'history',
             modifier: 'intelligence',
           },
           {
-            name: 'Магия',
+            name: 'Магия (Интеллект)',
             codeName: 'arcana',
             modifier: 'intelligence',
           }
@@ -195,22 +195,22 @@
         },
         personalSkills: [
           {
-            name: 'Акробатика',
+            name: 'Акробатика (Ловкость)',
             codeName: 'acrobatics',
             modifier: 'dexterity',
           },
           {
-            name: 'Обман',
+            name: 'Обман (Харизма)',
             codeName: 'deception',
             modifier: 'charisma',
           },
           {
-            name: 'Ловкость рук',
+            name: 'Ловкость рук (Ловкость)',
             codeName: 'sleight_of_hand',
             modifier: 'dexterity',
           },
           {
-            name: 'Скрытность',
+            name: 'Скрытность (Ловкость)',
             codeName: 'stealth',
             modifier: 'dexterity',
           }
@@ -259,22 +259,22 @@
         },
         personalSkills: [
           {
-            name: 'Убеждение',
+            name: 'Убеждение (Харизма)',
             codeName: 'persuasion',
             modifier: 'charisma',
           },
           {
-            name: 'Обман',
+            name: 'Обман (Харизма)',
             codeName: 'deception',
             modifier: 'charisma',
           },
           {
-            name: 'Акробатика',
+            name: 'Акробатика (Ловкость)',
             codeName: 'acrobatics',
             modifier: 'dexterity',
           },
           {
-            name: 'Выступление',
+            name: 'Выступление (Харизма)',
             codeName: 'performance',
             modifier: 'charisma',
           }
@@ -323,22 +323,22 @@
         },
         personalSkills: [
           {
-            name: 'Запугивание',
+            name: 'Запугивание (Харизма)',
             codeName: 'intimidation',
             modifier: 'charisma',
           },
           {
-            name: 'Атлетика',
+            name: 'Атлетика (Сила)',
             codeName: 'athletics',
             modifier: 'strength',
           },
           {
-            name: 'Выживание',
+            name: 'Выживание (Мудрость)',
             codeName: 'survival',
             modifier: 'wisdom',
           },
           {
-            name: 'Уход за животными',
+            name: 'Уход за животными (Мудрость)',
             codeName: 'animal_handling',
             modifier: 'wisdom',
           }
@@ -387,22 +387,22 @@
         },
         personalSkills: [
           {
-            name: 'Внимательность',
+            name: 'Внимательность (Мудрость)',
             codeName: 'perception',
             modifier: 'wisdom',
           },
           {
-            name: 'Природа',
+            name: 'Природа (Интеллект)',
             codeName: 'nature',
             modifier: 'intelligence',
           },
           {
-            name: 'Медицина',
+            name: 'Магия (Интеллект)',
             codeName: 'medicine',
             modifier: 'wisdom',
           },
           {
-            name: 'Религия',
+            name: 'Религия (Интеллект)',
             codeName: 'religion',
             modifier: 'intelligence',
           }
@@ -424,92 +424,92 @@
   ],
   skills: [
     {
-      name: 'Акробатика',
+      name: 'Акробатика (Ловкость)',
       codeName: 'acrobatics',
       modifier: 'dexterity',
     },
     {
-      name: 'Анализ',
+      name: 'Анализ (Интеллект)',
       codeName: 'investigation',
       modifier: 'intelligence',
     },
     {
-      name: 'Атлетика',
+      name: 'Атлетика (Сила)',
       codeName: 'athletics',
       modifier: 'strength',
     },
     {
-      name: 'Внимательность',
+      name: 'Внимательность (Мудрость)',
       codeName: 'perception',
       modifier: 'wisdom',
     },
     {
-      name: 'Выживание',
+      name: 'Выживание (Мудрость)',
       codeName: 'survival',
       modifier: 'wisdom',
     },
     {
-      name: 'Выступление',
+      name: 'Выступление (Харизма)',
       codeName: 'performance',
       modifier: 'charisma',
     },
     {
-      name: 'Запугивание',
+      name: 'Запугивание (Харизма)',
       codeName: 'intimidation',
       modifier: 'charisma',
     },
     {
-      name: 'История',
+      name: 'История (Интеллект)',
       codeName: 'history',
       modifier: 'intelligence',
     },
     {
-      name: 'Ловкость рук',
+      name: 'Ловкость рук (Ловкость)',
       codeName: 'sleight_of_hand',
       modifier: 'dexterity',
     },
     {
-      name: 'Магия',
+      name: 'Магия (Интеллект)',
       codeName: 'arcana',
       modifier: 'intelligence',
     },
     {
-      name: 'Медицина',
+      name: 'Медицина (Мудрость)',
       codeName: 'medicine',
       modifier: 'wisdom',
     },
     {
-      name: 'Обман',
+      name: 'Обман (Харизма)',
       codeName: 'deception',
       modifier: 'charisma',
     },
     {
-      name: 'Природа',
+      name: 'Природа (Интеллект)',
       codeName: 'nature',
       modifier: 'intelligence',
     },
     {
-      name: 'Проницательность',
+      name: 'Проницательность (Мудрость)',
       codeName: 'insight',
       modifier: 'wisdom',
     },
     {
-      name: 'Религия',
+      name: 'Религия (Интеллект)',
       codeName: 'religion',
       modifier: 'intelligence',
     },
     {
-      name: 'Скрытность',
+      name: 'Скрытность (Ловкость)',
       codeName: 'stealth',
       modifier: 'dexterity',
     },
     {
-      name: 'Убеждение',
+      name: 'Убеждение (Харизма)',
       codeName: 'persuasion',
       modifier: 'charisma',
     },
     {
-      name: 'Уход за животными',
+      name: 'Уход за животными (Мудрость)',
       codeName: 'animal_handling',
       modifier: 'wisdom',
     },

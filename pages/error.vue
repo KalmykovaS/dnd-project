@@ -21,5 +21,7 @@ import { ERouteName } from "~/app/routeName.enum";
 </script>
 
 <style scoped>
-
+template {
+  display: block;
+}
 </style>
