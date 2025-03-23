@@ -8,7 +8,6 @@ const BackgroundPage = () => import("~/pages/background.vue");
 const WorldviewPage = () => import("~/pages/worldview.vue");
 const CharacterPage = () => import("~/pages/character.vue");
 const CharacteristicsPage = () => import("~/pages/characteristics.vue");
-const ErrorPage = () => import("~/pages/error.vue");
 
 export default {
     routes: (_routes) => [
@@ -46,11 +45,6 @@ export default {
             name: ERouteName.Characteristics,
             path: '/characteristics',
             component: CharacteristicsPage,
-        },
-        {
-            name: ERouteName.Error,
-            path: "/:pathMatch(.*)*",
-            component: ErrorPage,
         },
     ],
 } satisfies RouterConfig

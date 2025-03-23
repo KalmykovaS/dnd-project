@@ -11,7 +11,7 @@ export const useStateStore = defineStore('state', () => {
     const classState = useStorage('classState', '');
     const worldviewState = useStorage('worldviewState', '');
 
-    const classStateId = useStorage('classStateId', '');
+    const classStateId = useStorage<number | undefined>('classStateId', undefined);
 
     const clearStorage = () => {
         characterName.value = '';
@@ -21,7 +21,7 @@ export const useStateStore = defineStore('state', () => {
         raceState.value = '';
         classState.value = '';
         worldviewState.value = '';
-        classStateId.value = null;
+        classStateId.value = undefined;
     };
 
     return {

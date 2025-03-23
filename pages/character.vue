@@ -52,6 +52,3 @@ const {
   features
 } = storeToRefs(stateStore);
 </script>
-
-<style scoped>
-</style>

@@ -1,75 +1,30 @@
-# Nuxt Minimal Starter
+## Information
+Проект представляет собой веб-приложение, где пользователь может пройти небольшой опросник и на основе выбранных параметров (раса, класс, мировоззрение, и других) получает готовый лист персонажа для игры в Dungeons & Dragons.
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install dependencies:
+## Json-server
 
 ```bash
-# npm
-npm install
+# Для того, чтобы поднять бэк на json-server выполните компанду
+$ npx json-server --watch db.json5 --port 4000 --static ./public
+````
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Build Setup
 
 ```bash
-# npm
-npm run dev
+# install dependencies
+$ yarn install
 
-# pnpm
-pnpm dev
+# serve with hot reload at localhost:3000
+$ yarn dev
 
-# yarn
-yarn dev
+# build for production and launch server
+$ yarn build
 
-# bun
-bun run dev
+# generate static project
+$ yarn generate
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
+## Information
+Проект представляет собой веб-приложение, где пользователь может пройти небольшой опросник и на основе выбранных параметров (раса, класс, мировоззрение, и других) получает готовый лист персонажа для игры в Dungeons & Dragons.
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

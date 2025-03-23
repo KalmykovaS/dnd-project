@@ -53,6 +53,3 @@ function clearAllFromLocalStorage() {
   stateStore.clearStorage();
 }
 </script>
-
-<style scoped>
-</style>

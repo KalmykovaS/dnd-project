@@ -24,7 +24,3 @@ const handleInput = (event: Event) => {
   emit("update:modelValue", target.value);
 };
 </script>
-
-<style scoped>
-
-</style>

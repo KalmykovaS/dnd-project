@@ -37,12 +37,15 @@ import type { ItemsList } from "~/types/common";
 const config = useRuntimeConfig();
 const baseUrl = config.public.apiBase;
 
-const { data, pending } = await useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/worldview`));
+const { data, pending, error } = await useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/worldview`));
+
+if (error.value) {
+  throw createError({
+    statusCode: error.value?.statusCode,
+    statusMessage: error.value?.statusMessage
+  })
+}
 
 const stateStore = useStateStore();
 const { classStateId, worldviewState } = storeToRefs(stateStore);
 </script>
-
-<style scoped>
-
-</style>

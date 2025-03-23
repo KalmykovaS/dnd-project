@@ -44,7 +44,14 @@ const route = useRoute();
 const config = useRuntimeConfig();
 const baseUrl = config.public.apiBase;
 
-const { data, pending } = await useAsyncData(() => $fetch<ItemsList>(`${baseUrl}/classes/${route.params.id}`));
+const { data, pending, error } = await useAsyncData(() => $fetch<ItemsList>(`${baseUrl}/classes/${route.params.id}`));
+
+if (error.value) {
+  throw createError({
+    statusCode: error.value?.statusCode,
+    statusMessage: error.value?.statusMessage
+  })
+}
 
 const backgroundData = computed(() => data.value?.background);
 

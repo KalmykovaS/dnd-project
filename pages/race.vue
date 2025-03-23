@@ -40,13 +40,16 @@ import type { ItemsList } from "~/types/common";
 const config = useRuntimeConfig();
 const baseUrl = config.public.apiBase;
 
-const { data, pending } = await useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/races`));
+const { data, pending, error } = await useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/races`));
+
+if (error.value) {
+  throw createError({
+    statusCode: error.value?.statusCode,
+    statusMessage: error.value?.statusMessage
+  })
+}
 
 const stateStore = useStateStore();
 const { raceState } = storeToRefs(stateStore);
 
 </script>
-
-<style scoped>
-
-</style>

@@ -195,19 +195,29 @@ const config = useRuntimeConfig();
 const baseUrl = config.public.apiBase;
 
 const [
-  { data: personal, pending: personalPending },
-  { data: paces, pending: pacePending },
-  { data: skills, pending: skillsPending },
-  { data: worldviews, pending: worldviewsPending },
+  { data: personal, pending: personalPending, error: personalError },
+  { data: paces, pending: pacePending, error: paceError },
+  { data: skills, pending: skillsPending, error: skillsError },
+  { data: worldviews, pending: worldviewsPending, error: worldviewError },
 ] = await Promise.all([
   useAsyncData(() => $fetch<ItemsList>(`${baseUrl}/classes/${classStateId.value}`)),
   useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/races`)),
-  useAsyncData(() => $fetch<Skill[]>(`${baseUrl}/skills`)),
+  useAsyncData(() => $fetch<Skill[]>(`${baseUrl}/skills444`)),
   useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/worldview`))
 ]);
 
+watchEffect(() => {
+  const errorToThrow = personalError.value || paceError.value || skillsError.value || worldviewError.value;
+  if (errorToThrow) {
+    throw createError({
+      statusCode: errorToThrow?.statusCode,
+      statusMessage: errorToThrow?.statusMessage
+    })
+  }
+});
+
 const loading = computed(() => {
-  return personal.value &&
+  return personalPending.value &&
       pacePending.value &&
       skillsPending.value &&
       worldviewsPending.value
