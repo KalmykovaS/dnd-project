@@ -202,7 +202,7 @@ const [
 ] = await Promise.all([
   useAsyncData(() => $fetch<ItemsList>(`${baseUrl}/classes/${classStateId.value}`)),
   useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/races`)),
-  useAsyncData(() => $fetch<Skill[]>(`${baseUrl}/skills444`)),
+  useAsyncData(() => $fetch<Skill[]>(`${baseUrl}/skills`)),
   useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/worldview`))
 ]);
 
