@@ -43,6 +43,8 @@ const baseUrl = config.public.apiBase;
 const { data, pending, error } = await useAsyncData(() => $fetch<ItemsList[]>(`${baseUrl}/races`));
 
 if (error.value) {
+  console.error("Ошибка при загрузке данных:", error);
+
   throw createError({
     statusCode: error.value?.statusCode,
     statusMessage: error.value?.statusMessage

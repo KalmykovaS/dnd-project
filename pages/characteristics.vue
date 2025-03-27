@@ -209,6 +209,8 @@ const [
 watchEffect(() => {
   const errorToThrow = personalError.value || paceError.value || skillsError.value || worldviewError.value;
   if (errorToThrow) {
+    console.error("Ошибка при загрузке данных:", errorToThrow);
+
     throw createError({
       statusCode: errorToThrow?.statusCode,
       statusMessage: errorToThrow?.statusMessage
